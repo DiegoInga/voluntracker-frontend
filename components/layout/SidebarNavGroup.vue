@@ -25,27 +25,28 @@ const openCollapsible = ref(false)
     >
       <SidebarMenuItem>
         <CollapsibleTrigger as-child>
-          <SidebarMenuButton :tooltip="item.title" :size="size">
-            <Icon :name="item.icon || ''" mode="svg" />
-            <span>{{ item.title }}</span>
-            <span v-if="item.new" class="rounded-md bg-#adfa1d px-1.5 py-0.5 text-xs text-black leading-none no-underline group-hover:no-underline">
-              New
-            </span>
-            <Icon name="i-lucide-chevron-right" class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+          <SidebarMenuButton :tooltip="item.title" :size="size" class="group w-full">
+            <div class="flex items-center gap-3 w-full px-4 py-2 rounded-md hover:bg-[#f1f5f9] text-muted-foreground hover:text-primary">
+              <Icon :name="item.icon || ''" mode="svg" class="h-5 w-5" />
+              <span class="text-sm font-medium">{{ item.title }}</span>
+              <Icon name="i-lucide-chevron-right" class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+            </div>
           </SidebarMenuButton>
         </CollapsibleTrigger>
+
         <CollapsibleContent>
-          <SidebarMenuSub>
+          <SidebarMenuSub class="pl-8">
             <SidebarMenuSubItem
               v-for="subItem in item.children"
               :key="subItem.title"
             >
               <SidebarMenuSubButton as-child>
-                <NuxtLink :to="subItem.link" @click="setOpenMobile(false)">
-                  <span>{{ subItem.title }}</span>
-                  <span v-if="subItem.new" class="rounded-md bg-#adfa1d px-1.5 py-0.5 text-xs text-black leading-none no-underline group-hover:no-underline">
-                    New
-                  </span>
+                <NuxtLink
+                  :to="subItem.link"
+                  class="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  @click="setOpenMobile(false)"
+                >
+                  {{ subItem.title }}
                 </NuxtLink>
               </SidebarMenuSubButton>
             </SidebarMenuSubItem>
@@ -55,6 +56,7 @@ const openCollapsible = ref(false)
     </Collapsible>
   </SidebarMenu>
 </template>
+
 
 <style scoped>
 

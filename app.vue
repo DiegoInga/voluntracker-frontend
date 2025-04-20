@@ -4,7 +4,7 @@ import { ConfigProvider } from 'radix-vue'
 
 const colorMode = useColorMode()
 
-const color = computed(() => colorMode.value === 'dark' ? '#09090b' : '#ffffff')
+const color = computed(() => colorMode.value === 'dark' ? '#000000' : '#ffffff')
 
 const { theme, radius } = useCustomize()
 
@@ -26,7 +26,7 @@ useHead({
   },
 })
 
-const title = 'Nuxt Shadcn UI - Dashboard Template'
+const title = 'Voluntracker - Dashboard'
 const description = 'This dashboard, built with Nuxt, Shadcn UI, and UnoCSS. It includes a dark mode toggle and is optimized for performance and data efficiency.'
 
 useSeoMeta({
@@ -58,11 +58,9 @@ const dir = computed(() => textDirection.value === 'rtl' ? 'rtl' : 'ltr')
 <template>
   <ConfigProvider :use-id="useIdFunction" :dir="dir">
     <div vaul-drawer-wrapper class="relative">
-      <NuxtLayout>
-        <NuxtPage />
+      <NuxtLayout >
+        <NuxtPage :key="$route.fullPath" />
       </NuxtLayout>
-
-      <AppSettings />
     </div>
 
     <Toaster />

@@ -89,10 +89,6 @@ const showModalTheme = ref(false)
                 Github Repository
               </NuxtLink>
             </DropdownMenuItem>
-            <DropdownMenuItem @click="showModalTheme = true">
-              <Icon name="i-lucide-paintbrush" />
-              Theme
-            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem @click="handleLogout">

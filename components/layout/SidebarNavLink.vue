@@ -16,19 +16,31 @@ const { setOpenMobile } = useSidebar()
 <template>
   <SidebarMenu>
     <SidebarMenuItem>
-      <SidebarMenuButton as-child :tooltip="item.title" :size="size">
-        <NuxtLink :to="item.link" @click="setOpenMobile(false)">
-          <Icon :name="item.icon || ''" mode="svg" />
-          <span>{{ item.title }}</span>
-          <span v-if="item.new" class="rounded-md bg-#adfa1d px-1.5 py-0.5 text-xs text-black leading-none no-underline group-hover:no-underline">
-            New
-          </span>
+      <SidebarMenuButton as-child :tooltip="item.title" :size="size" class="group w-full">
+        <NuxtLink
+          :to="item.link"
+          class="flex items-center gap-3 px-4 py-2 rounded-md transition-all hover:bg-[#f1f5f9] text-muted-foreground hover:text-primary"
+          @click="setOpenMobile(false)"
+        >
+          <Icon :name="item.icon || ''" mode="svg" class="h-5 w-5" />
+          <span class="text-sm font-medium">{{ item.title }}</span>
         </NuxtLink>
       </SidebarMenuButton>
     </SidebarMenuItem>
   </SidebarMenu>
 </template>
 
-<style scoped>
 
+<style scoped>
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
 </style>

@@ -9,33 +9,7 @@ function resolveNavItemComponent(item: NavLink | NavGroup | NavSectionTitle): an
   return resolveComponent('LayoutSidebarNavLink')
 }
 
-const teams: {
-  name: string
-  logo: string
-  plan: string
-}[] = [
-  {
-    name: 'Acme Inc',
-    logo: 'i-lucide-gallery-vertical-end',
-    plan: 'Enterprise',
-  },
-  {
-    name: 'Acme Corp.',
-    logo: 'i-lucide-audio-waveform',
-    plan: 'Startup',
-  },
-  {
-    name: 'Evil Corp.',
-    logo: 'i-lucide-command',
-    plan: 'Free',
-  },
-]
-
-const user: {
-  name: string
-  email: string
-  avatar: string
-} = {
+const user = {
   name: 'Dian Pratama',
   email: 'dianpratama2@gmail.com',
   avatar: '/avatars/avatartion.png',
@@ -46,10 +20,17 @@ const { sidebar } = useAppSettings()
 
 <template>
   <Sidebar :collapsible="sidebar.collapsible" :side="sidebar.side" :variant="sidebar.variant">
+    <!-- Sidebar Header -->
     <SidebarHeader>
-      <LayoutSidebarNavHeader :teams="teams" />
-      <Search />
+      <div class="flex items-center gap-2 p-4">
+        <img src="/logo.png" alt="Logo" class="h-8 w-10">
+        <h1 class="bg-clip-text bg-gradient-to-r font-bold text-lg text-transparent from-[#3DA5D9] via-[#1C8AC0] to-[#4BC379]">
+          VOLUNTRACKER
+        </h1>
+      </div>
     </SidebarHeader>
+
+    <!-- Sidebar Content -->
     <SidebarContent>
       <SidebarGroup v-for="(nav, indexGroup) in navMenu" :key="indexGroup">
         <SidebarGroupLabel v-if="nav.heading">
@@ -57,10 +38,9 @@ const { sidebar } = useAppSettings()
         </SidebarGroupLabel>
         <component :is="resolveNavItemComponent(item)" v-for="(item, index) in nav.items" :key="index" :item="item" />
       </SidebarGroup>
-      <SidebarGroup class="mt-auto">
-        <component :is="resolveNavItemComponent(item)" v-for="(item, index) in navMenuBottom" :key="index" :item="item" size="sm" />
-      </SidebarGroup>
     </SidebarContent>
+
+    <!-- Sidebar Footer -->
     <SidebarFooter>
       <LayoutSidebarNavFooter :user="user" />
     </SidebarFooter>
@@ -69,5 +49,5 @@ const { sidebar } = useAppSettings()
 </template>
 
 <style scoped>
-
+/* Puedes agregar estilos personalizados aquí si es necesario */
 </style>
