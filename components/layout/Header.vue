@@ -3,7 +3,7 @@ const route = useRoute()
 
 function setLinks() {
   if (route.fullPath === '/') {
-    return [{ title: 'Home', href: '/' }]
+    return [{ title: 'Dashboard', href: '/' }]
   }
 
   const segments = route.fullPath.split('/').filter(item => item !== '')
@@ -21,7 +21,7 @@ function setLinks() {
     }
   })
 
-  return [{ title: 'Home', href: '/' }, ...breadcrumbs]
+  return [{ title: 'Dashboard', href: '/' }, ...breadcrumbs]
 }
 
 const links = ref<{
@@ -34,6 +34,9 @@ watch(() => route.fullPath, (val) => {
     links.value = setLinks()
   }
 })
+
+// Lógica para cambiar el tema
+const colorMode = useColorMode()
 </script>
 
 <template>
@@ -43,12 +46,33 @@ watch(() => route.fullPath, (val) => {
       <Separator orientation="vertical" class="h-4" />
       <BaseBreadcrumbCustom :links="links" />
     </div>
-    <div class="ml-auto">
+    <div class="ml-auto flex items-center gap-4">
+      <!-- Botón para cambiar el tema -->
+      <button
+        @click="colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'"
+        class="p-2 rounded-full transition-colors"
+        :aria-label="`Switch to ${colorMode.preference === 'dark' ? 'light' : 'dark'} mode`"
+      >
+        <Icon
+          :name="colorMode.preference === 'dark' ? 'i-lucide-sun' : 'i-lucide-moon'"
+          class="h-5 w-5 text-gray-800 dark:text-gray-200"
+        />
+      </button>
       <slot />
     </div>
   </header>
 </template>
 
 <style scoped>
+button {
+  transition: background-color 0.3s, transform 0.2s;
+}
 
+button:hover {
+  transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+}
+
+button:active {
+  transform: scale(0.95); /* Efecto de clic */
+}
 </style>

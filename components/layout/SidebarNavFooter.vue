@@ -78,17 +78,6 @@ const showModalTheme = ref(false)
                 Settings
               </NuxtLink>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Icon name="i-lucide-bell" />
-              Notifications
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem as-child>
-              <NuxtLink to="https://github.com/dianprata/nuxt-shadcn-dashboard" external target="_blank">
-                <Icon name="i-lucide-github" />
-                Github Repository
-              </NuxtLink>
-            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem @click="handleLogout">

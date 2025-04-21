@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NavGroup, NavLink, NavSectionTitle } from '~/types/nav'
-import { navMenu, navMenuBottom } from '~/constants/menus'
+import { navMenu } from '~/constants/menus'
 
 function resolveNavItemComponent(item: NavLink | NavGroup | NavSectionTitle): any {
   if ('children' in item)
